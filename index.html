@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Provo 260th YSA Ward Program</title>
+<style>
+:root{--blue:#006184;--ink:#2c2c2c;--muted:#656565;--line:#d9dde0;--bg:#f4f6f7;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:640px;margin:0 auto;padding:0 0 40px}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:700;margin:0}
+.cover{background:var(--blue);color:#fff;text-align:center;padding:40px 24px 32px}
+.cover h1{font-size:2rem;line-height:1.15}
+.cover .date{margin-top:8px;font-size:1.1rem;opacity:.95}
+.cover .verse{margin:24px auto 0;max-width:420px;font-family:Georgia,serif;font-style:italic;line-height:1.5}
+.cover .verse span{display:block;font-style:normal;margin-top:6px;font-size:.95rem}
+.cover img{max-width:200px;margin:0 auto 20px;display:block}
+nav{display:flex;position:sticky;top:0;background:var(--card);border-bottom:1px solid var(--line);z-index:2}
+nav a{flex:1;text-align:center;padding:14px 4px;color:var(--blue);text-decoration:none;font-weight:600;font-size:.95rem}
+nav a:active{background:var(--bg)}
+section{background:var(--card);margin:16px 12px;padding:22px 20px;border-radius:6px;border:1px solid var(--line)}
+section h2{color:var(--blue);font-size:1.4rem;padding-bottom:10px;border-bottom:2px solid var(--blue);margin-bottom:6px}
+.sub{color:var(--muted);margin:8px 0 12px}
+.row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line)}
+.row b{font-weight:600;color:var(--muted)}
+.row span{text-align:right}
+.hymn{padding:10px 0;border-bottom:1px solid var(--line)}
+.hymn .top{display:flex;justify-content:space-between;gap:12px}
+.hymn .top b{font-weight:600;color:var(--muted)}
+.hymn .title{font-family:Georgia,serif;font-style:italic;margin-top:2px}
+.center{text-align:center;font-family:Georgia,serif;padding:12px 0;border-bottom:1px solid var(--line)}
+.ann{padding:12px 0;border-bottom:1px solid var(--line)}
+.ann strong{color:var(--blue)}
+section :last-child{border-bottom:0}
+a{color:var(--blue)}
+.lead{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.lead small{display:block;color:var(--muted);font-size:.85rem}
+.lead a{white-space:nowrap;font-weight:600;text-decoration:none}
+.gap{height:8px}
+</style>
+</head>
+<body>
+<main>
+<header class="cover" id="cover"></header>
+<nav><a href="#meeting">Meeting</a><a href="#announcements">Announcements</a><a href="#leaders">Leaders</a></nav>
+<section id="meeting"></section>
+<section id="announcements"></section>
+<section id="leaders"></section>
+</main>
+
+<script>
+/* =====================================================================
+   WEEKLY UPDATE AREA — edit only the text between the quotes below.
+   Everything under the "DO NOT EDIT" line builds the page automatically.
+   ===================================================================== */
+const PROGRAM = {
+  wardName: "Provo 260th YSA Ward",
+  date: "September 13, 2026",
+  verse: "Commit thy works unto the Lord, and thy thoughts shall be established.",
+  verseRef: "Proverbs 16:3",
+  coverImage: "", // optional: put an image file name here (e.g. "christ.jpg") after uploading it to GitHub
+
+  // ---- Sacrament meeting ----
+  people: [
+    ["Presiding", "Bishop Brooke Roney"],
+    ["Conducting", "Brother Ralph Abbott"],
+    ["Chorister", "Caleb Sherman"],
+    ["Organist", "James Grey"]
+  ],
+  // type: "hymn" = hymn with number, "person" = name only, "note" = centered line
+  order: [
+    { type: "hymn", label: "Opening Hymn", number: "#1017", title: "This is the Christ" },
+    { type: "person", label: "Invocation", name: "Brother Sam Reed" },
+    { type: "note", text: "Ward and Stake Business" },
+    { type: "hymn", label: "Sacrament Hymn", number: "#181", title: "Jesus of Nazareth, Savior and King" },
+    { type: "note", text: "Blessing and Passing of the Sacrament" },
+    { type: "person", label: "Speaker", name: "Sister Evie Burns" },
+    { type: "hymn", label: "Intermediate Hymn", number: "#1004", title: "I Will Walk With Jesus" },
+    { type: "person", label: "Speaker", name: "Brother Jeremiah Daynes" },
+    { type: "hymn", label: "Closing Hymn", number: "#243", title: "Let Us All Press On" },
+    { type: "person", label: "Benediction", name: "Sister Emma Lester" }
+  ],
+
+  // ---- Announcements (date is optional; leave "" for no bold lead-in) ----
+  announcements: [
+    { date: "Sunday, Sept. 13:", text: "Feed the Flock in the gym @ 2:00 pm. YSA devotional with Elder David Bednar and Sister Susan Bednar in the Marriott Center at 7:00 pm. It will also be online at: <a href='https://www.utah.churchofjesuschrist.org'>www.utah.churchofjesuschrist.org</a>" },
+    { date: "Monday, Sept. 14:", text: "Family Home Evening @ 7:00 pm. Check our ward group on the messenger app for details." },
+    { date: "Wednesday, Sept. 15:", text: "Stake Institute @ 6:30 pm." },
+    { date: "Saturday, Sept. 19:", text: "Church cleaning @ 9:00 am. We need LOTS of help with extra cleaning in preparation for Stake Conference." },
+    { date: "", text: "Stake Conference Leadership Session, 4:00 – 5:00 pm. This includes Relief Society, Sunday School, and Elder's Quorum presidencies and secretaries, Mission Leaders, and Temple and Family History Leaders and the Bishopric." },
+    { date: "", text: "Stake Conference Saturday Evening Session, 7:00 – 8:15 pm. All ward members are encouraged to attend." },
+    { date: "Sunday, Sept. 20:", text: "Stake Conference General Session, 1:00 – 2:30 pm. All ward members are encouraged to attend." }
+  ],
+
+  // ---- Leadership & contacts (rarely changes). Delete a phone number to hide it. ----
+  leaders: [
+    [
+      ["Bishop", "Brooke Roney", "801-376-4900"],
+      ["1st Counselor", "Ralph Abbott", "801-836-1709"],
+      ["2nd Counselor", "Zachary Smith", "801-361-0624"],
+      ["Executive Secretary", "Luke Nord", "801-368-8268"],
+      ["Ward Clerk", "Landon Day", "801-427-3405"],
+      ["Stake High Council", "David Garry", "801-368-1372"]
+    ],
+    [
+      ["RS President", "Rebekah Paine", "615-779-2278"],
+      ["EQ President", "Jackson Bertasso", "385-227-4485"],
+      ["SS President", "Palmer Abbott", "801-687-5525"]
+    ],
+    [
+      ["Mission Leader", "Avery Goeckeritz", "385-331-9578"],
+      ["Music Leader", "Caleb Sherman", "801-375-6917"],
+      ["Choir Director", "Matthew James", "801-836-5521"]
+    ]
+  ],
+  stakeWebsite: "www.provoysa18.org"
+};
+
+/* ===================== DO NOT EDIT BELOW THIS LINE ===================== */
+const P = PROGRAM, $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+document.title = P.wardName + " – " + P.date;
+
+$("cover").innerHTML =
+  (P.coverImage ? `<img src="${esc(P.coverImage)}" alt="">` : "") +
+  `<h1>${esc(P.wardName)}</h1><div class="date">${esc(P.date)}</div>` +
+  `<p class="verse">${esc(P.verse)}<span>${esc(P.verseRef)}</span></p>`;
+
+$("meeting").innerHTML =
+  `<h2>Sacrament Meeting</h2><p class="sub">${esc(P.date)}</p>` +
+  P.people.map(([l, n]) => `<div class="row"><b>${esc(l)}</b><span>${esc(n)}</span></div>`).join("") +
+  `<div class="gap"></div>` +
+  P.order.map(i =>
+    i.type === "hymn" ? `<div class="hymn"><div class="top"><b>${esc(i.label)}</b><span>${esc(i.number)}</span></div><div class="title">${esc(i.title)}</div></div>` :
+    i.type === "person" ? `<div class="row"><b>${esc(i.label)}</b><span>${esc(i.name)}</span></div>` :
+    `<div class="center">${esc(i.text)}</div>`
+  ).join("");
+
+$("announcements").innerHTML =
+  `<h2>Announcements &amp; Calendar Items</h2>` +
+  P.announcements.map(a => `<div class="ann">${a.date ? `<strong>${esc(a.date)}</strong> ` : ""}${a.text}</div>`).join("");
+
+$("leaders").innerHTML =
+  `<h2>Leadership &amp; Contact Info</h2>` +
+  P.leaders.map(g => g.map(([role, name, tel]) =>
+    `<div class="lead"><div>${esc(name)}<small>${esc(role)}</small></div>${tel ? `<a href="tel:${tel.replace(/\D/g, "")}">${esc(tel)}</a>` : ""}</div>`
+  ).join("") + `<div class="gap"></div>`).join("") +
+  `<div class="lead"><div>Stake website</div><a href="https://${esc(P.stakeWebsite)}">${esc(P.stakeWebsite)}</a></div>`;
+</script>
+</body>
+</html>
